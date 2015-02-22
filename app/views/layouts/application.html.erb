@@ -10,10 +10,10 @@
   </head>
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
+      <%= render 'navigation' %>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
+    <main class="container" role="main">
+       <%= render 'messages' %>
        <%= yield %>
     </main>
   </body>

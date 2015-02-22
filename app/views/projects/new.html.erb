@@ -1,0 +1,16 @@
+<div class="authform">
+  <%= form_for([@company, @project], :html => { :role => 'form'}) do |f| %>
+    <h3>New Project</h3>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <%= f.submit 'Create', :class => 'button right' %>
+  <% end %>
+</div>
