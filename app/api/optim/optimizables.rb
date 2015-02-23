@@ -15,7 +15,9 @@ module Optim
     end
     post '/optimizables' do
       authenticate
-      @optimizable = current_project.optimizables.new(declared(params))
+      @optimizable_class = current_project.optimizable_classes.find_or_initialize_by(:name => declared(params)[:class_name])
+      @optimizable = Optimizable.new(declared(params).except(:class_name))
+      @optimizable.optimizable_class = @optimizable_class
       if @optimizable.save
         @optimizable
       else
