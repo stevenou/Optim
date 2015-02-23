@@ -23,7 +23,7 @@
               <% current_user.companies.each do |company| %>
                 <p><%= company.name %></p>
                 <% current_user.projects.each do |project| %>
-                  <li><a href="<%= company_project_path(company, project) %>"><%= project.name %></a></li>
+                  <li><a href="<%= project_path(project) %>"><%= project.name %></a></li>
                 <% end %>
                 <li class="divider"></li>
                 <li><a href="<%= new_company_project_path(company) %>">+ New project</a></li>

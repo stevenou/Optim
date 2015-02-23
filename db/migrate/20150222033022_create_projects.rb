@@ -4,6 +4,9 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.string :subdomain
       t.integer :company_id
+      t.integer :optimizable_classes_count
+      t.integer :optimizables_count
+      t.integer :optimizable_variants_count
 
       t.timestamps null: false
     end

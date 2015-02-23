@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h3><%= @optimizable_class.project.name %> - <%= @optimizable_class.name %> <small>Optimization Items</small><%= link_to "+ New Optimization Item", new_optimizable_class_optimizable_path(@optimizable_class), :class => "btn btn-primary pull-right" %></h3>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <td>Category</td>
+    <td>Reference ID</td>
+    <td>Description</td>
+    <td># variations</td>
+    <td></td>
+  </thead>
+  <% @optimizable_class.optimizables.each do |optimizable| %>
+    <tr>
+      <td><%= @optimizable_class.name %></td>
+      <td><%= link_to optimizable.reference_id, optimizable %></td>
+      <td><%= optimizable.description %></td>
+      <td><span class="badge"><%= optimizable.optimizable_variants_count %></span></td>
+      <td><%= link_to "Delete", optimizable, :method => :delete, :class => "btn btn-danger", :data => { :confirm => "Are you sure? This action cannot be reversed." } %></td>
+    </tr>
+  <% end %>
+</table>
