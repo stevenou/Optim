@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
+  mount API => '/api'
+
   root to: 'visitors#index'
   devise_for :users
   resources :companies, :shallow => true do

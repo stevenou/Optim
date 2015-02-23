@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20150222200835) do
   create_table "optimizable_classes", force: :cascade do |t|
     t.string   "name"
     t.integer  "project_id"
-    t.integer  "optimizables_count"
-    t.integer  "optimizable_variants_count"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "optimizables_count",         default: 0, null: false
+    t.integer  "optimizable_variants_count", default: 0, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "optimizable_variants", force: :cascade do |t|
@@ -43,20 +43,21 @@ ActiveRecord::Schema.define(version: 20150222200835) do
     t.integer  "optimizable_class_id"
     t.string   "reference_id"
     t.string   "description"
-    t.integer  "optimizable_variants_count"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "optimizable_variants_count", default: 0, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "subdomain"
     t.integer  "company_id"
-    t.integer  "optimizable_classes_count"
-    t.integer  "optimizables_count"
-    t.integer  "optimizable_variants_count"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "api_key"
+    t.integer  "optimizable_classes_count",  default: 0, null: false
+    t.integer  "optimizables_count",         default: 0, null: false
+    t.integer  "optimizable_variants_count", default: 0, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "user_permissions", force: :cascade do |t|

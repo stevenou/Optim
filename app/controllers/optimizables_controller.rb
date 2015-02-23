@@ -22,9 +22,27 @@ class OptimizablesController < ApplicationController
   end
 
   def show
-    @optimizable = @optimizable_class.optimizables.find(params[:id])
+    @optimizable = Optimizable.find(params[:id])
     authorize @optimizable
-    deduce_optimizable_class
+    deduce_project
+  end
+
+  def edit
+    @optimizable = Optimizable.find(params[:id])
+    authorize @optimizable
+    deduce_project
+  end
+
+  def update
+    @optimizable = Optimizable.find(params[:id])
+    authorize @optimizable
+
+    if @optimizable.update_attributes(optimizable_params)
+      flash[:notice] = "#{@optimizable.optimizable_class.name} #{@optimizable.reference_id} successfully updated."
+      redirect_to optimizable_class_path(@optimizable.optimizable_class)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -42,10 +60,10 @@ class OptimizablesController < ApplicationController
 
   protected
   def optimizable_params
-    params.require(:optimizable).permit(:reference_id, :description, :optimizable_variants => [:url])
+    params.require(:optimizable).permit(:reference_id, :description, :optimizable_variants_attributes => [:url])
   end
 
-  def deduce_optimizable_class
-    @optimizable_class = @optimizable ? @optimizable.optimizable_class : nil
+  def deduce_project
+    @project = @optimizable ? @optimizable.optimizable_class.project : nil
   end
 end

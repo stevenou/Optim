@@ -1,0 +1,19 @@
+<div class="authform">
+  <%= bootstrap_nested_form_for([@optimizable_class, @optimizable], :label_errors => true, :html => { :role => 'form'}) do |f| %>
+    <%= f.alert_message "Please fix the errors below." %>
+
+    <h3><%= f.object.new_record? ? 'New' : 'Edit' %> Optimization Item</h3>
+    <%= f.text_field :optimizable_class, :value => f.object.optimizable_class.name, :autofocus => true, class: 'form-control disabled', :disabled => 'disabled' %>
+    <%= f.text_field :reference_id, :label => "Reference ID", :autofocus => true, class: "form-control#{f.object.new_record? ? "" : " disabled"}", :disabled => f.object.new_record? ? nil : 'disabled' %>
+    <%= f.text_field :description, :autofocus => true, class: 'form-control' %>
+
+    <legend>Variations</legend>
+    <%= f.fields_for :optimizable_variants, f.object.new_record? ? OptimizableVariant.new : f.object.optimizable_variants do |optimizable_variant_form| %>
+      <%= optimizable_variant_form.text_field :url, :class => optimizable_variant_form.object.new_record? ? "" : " disabled", :disabled => optimizable_variant_form.object.new_record? ? nil : 'disabled' %>
+      <%= optimizable_variant_form.link_to_remove "Remove this variation" %>
+    <% end %>
+    <p><%= f.link_to_add "Add a variation", :optimizable_variants %></p>
+
+    <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => 'button right' %>
+  <% end %>
+</div>

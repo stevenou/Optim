@@ -16,7 +16,10 @@
       <td><%= link_to optimizable.reference_id, optimizable %></td>
       <td><%= optimizable.description %></td>
       <td><span class="badge"><%= optimizable.optimizable_variants_count %></span></td>
-      <td><%= link_to "Delete", optimizable, :method => :delete, :class => "btn btn-danger", :data => { :confirm => "Are you sure? This action cannot be reversed." } %></td>
+      <td>
+        <%= link_to "Edit", edit_optimizable_path(optimizable), :class => "btn btn-primary btn-xs" %>
+        <%= link_to "Delete", optimizable, :method => :delete, :class => "btn btn-danger btn-xs", :data => { :confirm => "Are you sure? This action cannot be reversed." } %>
+      </td>
     </tr>
   <% end %>
 </table>

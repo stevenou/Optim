@@ -4,7 +4,7 @@ class CreateOptimizables < ActiveRecord::Migration
       t.integer :optimizable_class_id
       t.string :reference_id
       t.string :description
-      t.integer :optimizable_variants_count
+      t.integer :optimizable_variants_count, :null => false, :default => 0
 
       t.timestamps null: false
     end

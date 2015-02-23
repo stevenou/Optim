@@ -13,6 +13,10 @@ class OptimizablePolicy < ApplicationPolicy
     user.admin? or record.project.users.include?(user)
   end
 
+  def update?
+    user.admin? or record.project.users.include?(user)
+  end
+
   def show?
     user.admin? or record.project.users.include?(user)
   end
