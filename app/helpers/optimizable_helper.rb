@@ -1,0 +1,2 @@
+module OptimizableHelper
+end
